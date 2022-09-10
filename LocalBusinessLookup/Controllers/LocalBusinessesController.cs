@@ -23,6 +23,8 @@ namespace LocalBusinessLookup.Controllers
       return await _db.LocalBusinesses.ToListAsync();
     }
 
+
+
     [HttpPost]
     public async Task<ActionResult<LocalBusiness>> Post(LocalBusiness business)
     {
@@ -30,6 +32,7 @@ namespace LocalBusinessLookup.Controllers
       await _db.SaveChangesAsync();
 
       return CreatedAtAction("Post", new { id = business.LocalBusinessId }, business);
+      //return CreatedAtAction(nameof(GetLocalBusiness), new {id = business.LocalBusinessId, business});
     }
   }
 }
