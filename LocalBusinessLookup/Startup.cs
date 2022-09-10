@@ -31,7 +31,7 @@ namespace LocalBusinessLookup
         {
 
             services.AddDbContext<LocalBusinessLookupContext>(opt =>
-                opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServiceProviderServiceExtensions.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
+                opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
                 services.AddControllers();
         }
 
