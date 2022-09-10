@@ -21,9 +21,16 @@ namespace LocalBusinessLookup.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<LocalBusiness>>> Get()
+    public async Task<ActionResult<IEnumerable<LocalBusiness>>> Get(string name)
     {
-      return await _db.LocalBusinesses.ToListAsync();
+      var query = _db.LocalBusinesses.AsQueryable();
+
+      if (name != null)
+      {
+        query = query.Where(entry => entry.Name == name);
+      }
+
+      return await query.ToListAsync();
     }
 
     [HttpGet("{id}")]
